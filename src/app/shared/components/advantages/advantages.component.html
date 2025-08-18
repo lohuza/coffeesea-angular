@@ -1,0 +1,14 @@
+<section class="advantages-section">
+  <div class="container">
+    <h2>{{ 'home.our_advantages' | translate }}</h2>
+    <div class="advantages-grid">
+      <div class="advantage-card" *ngFor="let advantage of advantages">
+        <div class="advantage-icon">
+          <img [src]="advantage.icon" [alt]="advantage.title | translate">
+        </div>
+        <h3>{{ advantage.title | translate }}</h3>
+        <p>{{ advantage.description | translate }}</p>
+      </div>
+    </div>
+  </div>
+</section> 

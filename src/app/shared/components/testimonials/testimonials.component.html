@@ -1,0 +1,32 @@
+<section class="testimonials-section">
+  <div class="container">
+    <div class="testimonials-heading">
+      <h2>{{ 'home.testimonials' | translate }}</h2>
+      <p>{{ 'home.what_people_say' | translate }}</p>
+    </div>
+
+    <div class="testimonials-swiper-container">
+      <swiper-container
+        init="false"
+        slides-per-view="1"
+        space-between="32"
+        loop="true"
+        autoplay="true"
+        autoplay-delay="3000"
+        autoplay-disable-on-interaction="false"
+        breakpoints='{"640": {"slidesPerView": 1}, "768": {"slidesPerView": 1.5}, "1024": {"slidesPerView": 3}}'>
+
+        <swiper-slide *ngFor="let testimonial of testimonials">
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <img [src]="testimonial.image" [alt]="testimonial.name">
+              <h3>{{ testimonial.name }}</h3>
+            </div>
+            <p class="testimonial-text">{{ testimonial.text }}</p>
+          </div>
+        </swiper-slide>
+
+      </swiper-container>
+    </div>
+  </div>
+</section>

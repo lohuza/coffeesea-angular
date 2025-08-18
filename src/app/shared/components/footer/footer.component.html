@@ -1,0 +1,32 @@
+<footer class="footer py-8 border-t border-white border-opacity-70 mt-5">
+  <div class="flex flex-col items-center gap-8">
+    <!-- Navigation Links -->
+    <nav class="flex gap-6">
+      <a *ngFor="let link of footerLinks"
+         [appLanguageRoute]="link.path"
+         class="text-black hover:text-coffee-700 transition-colors">
+        {{ link.titleKey | translate }}
+      </a>
+    </nav>
+
+    <!-- Social Links -->
+    <div class="flex gap-4">
+      <a *ngFor="let social of socialLinks"
+         [href]="social.href"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="w-10 h-10 rounded-full bg-coffee-50 flex items-center justify-center hover:bg-coffee-100 transition-colors">
+        <img [src]="social.icon"
+             [alt]="social.name"
+             width="24"
+             height="24"
+             class="object-contain">
+      </a>
+    </div>
+
+    <!-- Copyright -->
+    <p class="text-coffee-400 text-sm">
+      © Copyright {{ currentYear }} Madloba - All Rights Reserved
+    </p>
+  </div>
+</footer>

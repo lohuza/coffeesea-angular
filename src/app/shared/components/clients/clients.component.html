@@ -1,0 +1,12 @@
+<section class="clients-section">
+  <div class="container">
+    <h2>{{ 'home.our_clients' | translate }}</h2>
+    <p class="section-subtitle">{{ 'home.know_our_clients' | translate }}</p>
+    
+    <div class="clients-grid">
+      <div class="client-item" *ngFor="let client of clients">
+        <img [src]="client.logo" [alt]="client.name">
+      </div>
+    </div>
+  </div>
+</section> 

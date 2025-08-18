@@ -1,0 +1,81 @@
+<div class="services-container">
+  <div class="services-content">
+    <!-- What We Offer Section -->
+    <section class="services-section">
+      <h1 class="services-title">{{ 'services.title' | translate }}</h1>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+          </div>
+          <p class="service-text">{{ 'services.intro_1' | translate }}</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+          </div>
+          <p class="service-text">{{ 'services.intro_2' | translate }}</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path>
+            </svg>
+          </div>
+          <p class="service-text">{{ 'services.intro_3' | translate }}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="services-section">
+      <h2 class="services-subtitle">{{ 'services.why_us_title' | translate }}</h2>
+
+      <div class="reasons-list">
+        <div class="reason-item">
+          <div class="reason-check">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <p class="reason-text">{{ 'services.reason_1' | translate }}</p>
+        </div>
+
+        <div class="reason-item">
+          <div class="reason-check">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <p class="reason-text">{{ 'services.reason_2' | translate }}</p>
+        </div>
+
+        <div class="reason-item">
+          <div class="reason-check">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <p class="reason-text">{{ 'services.reason_3' | translate }}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <div class="services-cta">
+      <h3 class="cta-title">{{ 'services.cta_title' | translate }}</h3>
+      <a [routerLink]="['/contacts']" class="cta-button">
+        {{ 'services.cta_button' | translate }}
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<section class="subscription-section">
+  <div class="container">
+    <h2>Subscription Plans</h2>
+    <p class="section-subtitle">Choose a plan that works for you</p>
+    
+    <div class="plans-grid">
+      <div class="plan-card" *ngFor="let plan of plans" [class.popular]="plan.isPopular">
+        <div class="popular-tag" *ngIf="plan.isPopular">Most Popular</div>
+        <h3>{{ plan.name }}</h3>
+        <div class="price">
+          <span class="currency">$</span>
+          <span class="amount">{{ plan.price }}</span>
+          <span class="period">/{{ plan.period }}</span>
+        </div>
+        
+        <ul class="features">
+          <li *ngFor="let feature of plan.features">{{ feature }}</li>
+        </ul>
+        
+        <button class="subscribe-btn">Subscribe Now</button>
+      </div>
+    </div>
+  </div>
+</section> 

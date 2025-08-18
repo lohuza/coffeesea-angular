@@ -1,0 +1,28 @@
+<div class="about-container">
+  <div class="about-content">
+    <div class="about-card">
+      <div class="about-header">
+        <h1>{{ 'about.title' | translate }}</h1>
+      </div>
+
+      <div class="about-body">
+        <p>{{ 'about.paragraph_1' | translate }}</p>
+        <p>{{ 'about.paragraph_2' | translate }}</p>
+        <p>{{ 'about.paragraph_3' | translate }}</p>
+
+        <div class="about-cta">
+          <p>{{ 'about.cta' | translate }}</p>
+
+          <div class="about-buttons">
+            <a [routerLink]="['/services']" class="primary-btn">
+              {{ 'common.services' | translate }}
+            </a>
+            <a [routerLink]="['/contacts']" class="secondary-btn">
+              {{ 'common.contact' | translate }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

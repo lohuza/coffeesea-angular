@@ -1,0 +1,28 @@
+<section class="brands-section">
+  <div class="container">
+    <div class="brands-heading">
+      <h2>{{ 'home.finest_coffee_brands' | translate }}</h2>
+      <p>{{ 'home.our_exclusive_partners' | translate }}</p>
+    </div>
+
+    <div class="brands-swiper-container">
+      <swiper-container
+        init="false"
+        slides-per-view="1"
+        space-between="32"
+        loop="true"
+        autoplay="true"
+        autoplay-delay="3000"
+        autoplay-disable-on-interaction="false"
+        breakpoints='{"640": {"slidesPerView": 2.5}, "768": {"slidesPerView": 3.5}, "1024": {"slidesPerView": 4.5}}'>
+
+        <swiper-slide *ngFor="let brand of brands">
+          <div class="brand-card">
+            <img [src]="brand.logo" [alt]="brand.name">
+          </div>
+        </swiper-slide>
+
+      </swiper-container>
+    </div>
+  </div>
+</section>

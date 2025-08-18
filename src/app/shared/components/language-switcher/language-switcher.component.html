@@ -1,0 +1,13 @@
+<div class="language-switcher">
+  <div class="current-language">
+    {{ getLanguageLabel(currentLang) }}
+  </div>
+  <div class="language-options">
+    <button 
+      *ngFor="let lang of languages" 
+      (click)="switchLanguage(lang)"
+      [class.active]="currentLang === lang">
+      {{ getLanguageLabel(lang) }}
+    </button>
+  </div>
+</div>

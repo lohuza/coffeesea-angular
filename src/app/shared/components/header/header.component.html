@@ -1,0 +1,40 @@
+<header class="header fixed top-0 left-0 right-0 z-50" [style.background]="'radial-gradient(50% 50% at 100% 50%, #F7F1ED 0%, rgba(247, 241, 237, 0.25) 100%), linear-gradient(90deg, #F7F1ED 0%, #FFFFFF 100%)'">
+  <div class="px-4 h-20 flex items-center justify-between max-w-container mx-auto">
+    <!-- Logo/Left side -->
+    <div>
+      <a appLanguageRoute="" class="flex items-center">
+        <img src="assets/images/logo.png" alt="Coffeesea" class="h-8">
+      </a>
+    </div>
+
+    <!-- Navigation/Center -->
+    <nav class="flex items-center gap-8">
+      <a
+        appLanguageRoute="about"
+        class="text-coffee-900 hover:text-coffee-700 transition-colors"
+      >
+        {{ 'common.about' | translate }}
+      </a>
+      <a
+        appLanguageRoute="services"
+        class="text-coffee-900 hover:text-coffee-700 transition-colors"
+      >
+        {{ 'common.services' | translate }}
+      </a>
+      <a
+        appLanguageRoute="contacts"
+        class="text-coffee-900 hover:text-coffee-700 transition-colors"
+      >
+        {{ 'common.contact' | translate }}
+      </a>
+    </nav>
+
+    <!-- Actions/Right side -->
+    <div class="flex items-center gap-4">
+      <button class="px-6 py-2 rounded-full border border-coffee-200 text-coffee-900 hover:bg-coffee-100 transition-colors">
+        {{ 'common.sign_in' | translate }}
+      </button>
+      <app-language-switcher></app-language-switcher>
+    </div>
+  </div>
+</header>
