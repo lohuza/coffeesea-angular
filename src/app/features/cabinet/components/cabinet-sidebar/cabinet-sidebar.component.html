@@ -1,0 +1,18 @@
+<aside class="border border-coffee-300 rounded-lg p-4 bg-white/60 backdrop-blur">
+  <nav class="flex flex-col gap-2">
+    <a
+      *ngFor="let item of items"
+      [class.opacity-60]="item.disabled"
+      [class.cursor-not-allowed]="item.disabled"
+      [attr.tabindex]="item.disabled ? -1 : 0"
+      [appLanguageRoute]="item.route"
+      class="flex items-center justify-between px-3 py-2 rounded-md border border-coffee-200 text-coffee-800 hover:bg-coffee-100 transition-colors"
+    >
+      <span class="flex items-center gap-2">
+        <span class="inline-block size-2 rounded-full bg-coffee-400"></span>
+        {{ item.label }}
+      </span>
+      <span class="text-xs text-coffee-400" *ngIf="item.disabled">soon</span>
+    </a>
+  </nav>
+</aside>

@@ -1,0 +1,18 @@
+<div class="pt-28 pb-20 bg-[radial-gradient(50%_50%_at_100%_50%,#F7F1ED_0%,rgba(247,241,237,0.25)_100%),linear-gradient(90deg,#F7F1ED_0%,#FFFFFF_100%)] min-h-screen">
+  <div class="max-w-container mx-auto px-4">
+
+    <ng-container *ngIf="profile$ | async as profile">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-coffee-900 mb-8">
+        Hi, {{ profile?.companyPerson?.firstName }} {{ profile?.companyPerson?.lastName }}
+      </h1>
+    </ng-container>
+
+    <div class="grid grid-cols-1 md:grid-cols-[260px_1fr] gap-8">
+      <app-cabinet-sidebar></app-cabinet-sidebar>
+
+      <div class="border border-coffee-300 rounded-lg p-6 md:p-8 bg-white/60 backdrop-blur">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
