@@ -31,9 +31,22 @@
 
     <!-- Actions/Right side -->
     <div class="flex items-center gap-4">
-      <button class="px-6 py-2 rounded-full border border-coffee-200 text-coffee-900 hover:bg-coffee-100 transition-colors">
-        {{ 'common.sign_in' | translate }}
-      </button>
+      <ng-container *ngIf="isAuthenticated$ | async; else signInLink">
+        <a appLanguageRoute="cabinet" class="px-6 py-2 rounded-full border border-coffee-200 text-coffee-900 hover:bg-coffee-100 transition-colors cursor-pointer">
+          Cabinet
+        </a>
+      </ng-container>
+      <ng-template #signInLink>
+        <div class="inline-flex rounded-full border border-coffee-200 overflow-hidden">
+          <a appLanguageRoute="sign-in" class="px-5 py-2 text-coffee-900 hover:bg-coffee-100 transition-colors cursor-pointer">
+            {{ 'common.sign_in' | translate }}
+          </a>
+          <span class="w-px bg-coffee-200 my-1"></span>
+          <a appLanguageRoute="log-in" class="px-5 py-2 text-coffee-900 hover:bg-coffee-100 transition-colors cursor-pointer">
+            Log in
+          </a>
+        </div>
+      </ng-template>
       <app-language-switcher></app-language-switcher>
     </div>
   </div>

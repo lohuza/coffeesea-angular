@@ -1,13 +1,13 @@
 import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject, throwError } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { Observable, BehaviorSubject, throwError, of } from 'rxjs';
+import { catchError, switchMap } from 'rxjs/operators';
 import { isPlatformBrowser } from '@angular/common';
 import {
   LoginRequest,
   SignInRequest,
   RefreshTokenRequest,
-  AuthResponse
+  AuthResponse, Result
 } from '../models/api.models';
 import { BaseService } from './base.service';
 
@@ -18,7 +18,7 @@ export class AuthService extends BaseService {
   private readonly TOKEN_KEY = 'auth_token';
   private readonly REFRESH_TOKEN_KEY = 'refresh_token';
   private readonly EXPIRES_AT_KEY = 'expires_at';
-  private isBrowser: boolean;
+  private readonly isBrowser: boolean;
 
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
@@ -32,23 +32,35 @@ export class AuthService extends BaseService {
     this.isAuthenticatedSubject.next(this.hasValidToken());
   }
 
-  signIn(request: SignInRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.API_URL}/api/Authentication/SignIn`, request)
+  signIn(request: SignInRequest): Observable<Result<AuthResponse>> {
+    return this.http.post<Result<AuthResponse>>(`${this.API_URL}/api/Authentication/SignIn`, request)
       .pipe(
-        tap(response => this.setSession(response)),
+        switchMap(response => {
+          if (!response || response.isFailure || !response.value) {
+            return this.handleError(new Error('Sign in failed'));
+          }
+          this.setSession(response.value);
+          return of(response);
+        }),
         catchError(error => this.handleError(error))
       );
   }
 
-  login(request: LoginRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.API_URL}/api/Authentication/LogIn`, request)
+  login(request: LoginRequest): Observable<Result<AuthResponse>> {
+    return this.http.post<Result<AuthResponse>>(`${this.API_URL}/api/Authentication/LogIn`, request)
       .pipe(
-        tap(response => this.setSession(response)),
+        switchMap(response => {
+          if (!response || response.isFailure || !response.value) {
+            return this.handleError(new Error('Log in failed'));
+          }
+          this.setSession(response.value);
+          return of(response);
+        }),
         catchError(error => this.handleError(error))
       );
   }
 
-  refreshToken(): Observable<AuthResponse> {
+  refreshToken(): Observable<Result<AuthResponse>> {
     const token = this.getFromStorage(this.TOKEN_KEY);
     const refreshToken = this.getFromStorage(this.REFRESH_TOKEN_KEY);
 
@@ -61,9 +73,15 @@ export class AuthService extends BaseService {
       refreshToken
     };
 
-    return this.http.post<AuthResponse>(`${this.API_URL}/api/Authentication/RefreshToken`, request)
+    return this.http.post<Result<AuthResponse>>(`${this.API_URL}/api/Authentication/RefreshToken`, request)
       .pipe(
-        tap(response => this.setSession(response)),
+        switchMap(response => {
+          if (!response || response.isFailure || !response.value) {
+            return this.handleError(new Error('Could not refresh token'));
+          }
+          this.setSession(response.value);
+          return of(response);
+        }),
         catchError(error => this.handleError(error))
       );
   }
@@ -84,7 +102,7 @@ export class AuthService extends BaseService {
   }
 
   private setSession(authResult: AuthResponse): void {
-    const expiresAt = new Date().getTime() + (authResult.expiresIn * 1000);
+    const expiresAt = new Date().getTime() + (authResult.expiresInMinutes * 60 * 1000);
 
     this.saveToStorage(this.TOKEN_KEY, authResult.token);
     this.saveToStorage(this.REFRESH_TOKEN_KEY, authResult.refreshToken);

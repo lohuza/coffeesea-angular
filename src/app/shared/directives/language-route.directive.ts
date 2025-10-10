@@ -38,7 +38,6 @@ export class LanguageRouteDirective implements OnInit, OnChanges, OnDestroy {
   }
 
   private updateRouterLink(): void {
-    const commands = this.navService.getLangRoute(this.appLanguageRoute);
-    this.routerLink.routerLink = commands;
+    this.routerLink.routerLink = this.navService.getLangRoute(this.appLanguageRoute);
   }
 }

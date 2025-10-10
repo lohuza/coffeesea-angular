@@ -21,7 +21,9 @@ export class NavigationService {
 
   getLangRoute(path: string = ''): string[] {
     const currentLang = this.translationService.getCurrentLang();
-    return path ? ['/', currentLang, path] : ['/', currentLang];
+    if (!path) return ['/', currentLang];
+    const segments = path.split('/').filter(Boolean);
+    return ['/', currentLang, ...segments];
   }
 
   reloadWithLanguage(lang: string): void {

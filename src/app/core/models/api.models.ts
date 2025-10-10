@@ -79,14 +79,11 @@ export interface CompanyPersonEditData {
 export interface EditCompanyRequest {
   companyName?: string;
   companyPerson: CompanyPersonEditData;
-  passwordRequest: PasswordRequest;
 }
 
 export interface Location {
   id: string;
-  address?: string;
-  companyPersonId: string;
-  companyPerson: CompanyPerson;
+  address: string;
 }
 
 // Order models
@@ -108,5 +105,38 @@ export interface Product {
 export interface AuthResponse {
   token: string;
   refreshToken: string;
-  expiresIn: number;
-} 
+  expiresInMinutes: number;
+}
+
+export interface GetCompanyData {
+  company: GetCompany;
+  companyPerson: GetCompanyDataPerson;
+}
+
+export interface GetCompany {
+  id: string;
+  name: string;
+}
+
+export interface GetCompanyDataPerson {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+}
+
+export interface Result<T> {
+  value: T;
+  isFailure: boolean;
+  isSuccess: boolean;
+}
+
+export interface EditLocationRequest {
+  id: string;
+  address: string;
+}
+
+export interface AddLocationRequest {
+  address: string;
+}

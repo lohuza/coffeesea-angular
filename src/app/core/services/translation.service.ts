@@ -11,7 +11,7 @@ export type Language = 'en' | 'ka';
   providedIn: 'root'
 })
 export class TranslationService {
-  private isBrowser: boolean;
+  private readonly isBrowser: boolean;
   private currentLangSubject: BehaviorSubject<Language>;
   public currentLang$: Observable<Language>;
 
@@ -82,8 +82,7 @@ export class TranslationService {
         return storedLang;
       }
 
-      const browserLang = this.getBrowserLanguage();
-      return browserLang;
+      return this.getBrowserLanguage();
     }
 
     return 'en';
