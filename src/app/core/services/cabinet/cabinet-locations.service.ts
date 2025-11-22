@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, map } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { catchError, map, shareReplay, tap } from 'rxjs/operators';
 import { BaseService } from '../base.service';
 import { EditLocationRequest, AddLocationRequest, Location, Result } from '../../models/api.models';
 
@@ -8,12 +9,41 @@ import { EditLocationRequest, AddLocationRequest, Location, Result } from '../..
 export class CabinetLocationsService extends BaseService {
   constructor(private http: HttpClient) { super(); }
 
-  getLocations(): Observable<Location[]> {
+  private locationsSubject = new BehaviorSubject<Location[] | null>(null);
+  public locations$ = this.locationsSubject.asObservable();
+
+  private fetchLocations(): Observable<Location[]> {
     return this.http.get<any>(`${this.API_URL}/api/Cabinet/Locations`)
       .pipe(
         map(res => res.$values as Location[]),
         catchError(error => this.handleError(error))
       );
+  }
+
+  private loadAndCacheLocations(): Observable<Location[]> {
+    return this.fetchLocations().pipe(
+      tap(locs => this.locationsSubject.next(locs)),
+      shareReplay(1),
+      catchError(err => this.handleError(err))
+    );
+  }
+
+  getLocations(): Observable<Location[] | null> {
+    if (this.locationsSubject.value) {
+      return this.locations$;
+    }
+    this.loadAndCacheLocations().pipe(
+      catchError(() => of([] as Location[]))
+    ).subscribe();
+    return this.locations$;
+  }
+
+  load$(): Observable<Location[] | null> {
+    return this.getLocations();
+  }
+
+  refreshLocations(): Observable<Location[]> {
+    return this.loadAndCacheLocations();
   }
 
   add(address: string): Observable<Result<unknown>> {

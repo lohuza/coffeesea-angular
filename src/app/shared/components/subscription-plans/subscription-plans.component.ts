@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { TranslationService } from '../../../core/services/translation.service';
 
 @Component({
   selector: 'app-subscription-plans',
@@ -9,6 +11,14 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./subscription-plans.component.css']
 })
 export class SubscriptionPlansComponent {
+  private router = inject(Router);
+  private translate = inject(TranslationService);
+
+  goToPurchase() {
+    const lang = this.translate.getCurrentLang();
+    this.router.navigate([lang, 'purchase']);
+  }
+
   plans = [
     {
       name: 'Basic',
@@ -50,4 +60,4 @@ export class SubscriptionPlansComponent {
       isPopular: false
     }
   ];
-} 
+}

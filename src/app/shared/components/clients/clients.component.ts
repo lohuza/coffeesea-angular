@@ -13,27 +13,27 @@ export class ClientsComponent {
   clients = [
     {
       name: 'Cafe Mocha',
-      logo: 'assets/images/clients/client1.png'
+      logo: 'assets/images/brands/illy.png'
     },
     {
       name: 'Bean & Brew',
-      logo: 'assets/images/clients/client2.png'
+      logo: 'assets/images/brands/illy.png'
     },
     {
       name: 'Morning Sip',
-      logo: 'assets/images/clients/client3.png'
+      logo: 'assets/images/brands/illy.png'
     },
     {
       name: 'Coffee Republic',
-      logo: 'assets/images/clients/client4.png'
+      logo: 'assets/images/brands/illy.png'
     },
     {
       name: 'Urban Brews',
-      logo: 'assets/images/clients/client5.png'
+      logo: 'assets/images/brands/illy.png'
     },
     {
       name: 'Java Junction',
-      logo: 'assets/images/clients/client6.png'
+      logo: 'assets/images/brands/illy.png'
     }
   ];
-} 
+}

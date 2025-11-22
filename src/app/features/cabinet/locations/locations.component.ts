@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angula
 import { TranslateModule } from '@ngx-translate/core';
 import { CabinetLocationsService } from '../../../core/services/cabinet/cabinet-locations.service';
 import {Subject, EMPTY, Observable, map} from 'rxjs';
-import { catchError, concatMap, finalize, takeUntil, tap } from 'rxjs/operators';
+import { catchError, finalize, takeUntil, tap } from 'rxjs/operators';
 import { Location } from '../../../core/models/api.models';
 
 @Component({
@@ -35,9 +35,9 @@ export class LocationsComponent implements OnInit, OnDestroy {
   });
 
   ngOnInit(): void {
-    this.locations$ = this.locationsService.getLocations()
+    this.locations$ = this.locationsService.load$()
       .pipe(
-        map(locations => locations.sort((a, b) => a.address.localeCompare(b.address))),
+        map(locations => (locations ?? []).sort((a, b) => a.address.localeCompare(b.address))),
       );
   }
 
@@ -47,7 +47,7 @@ export class LocationsComponent implements OnInit, OnDestroy {
   }
 
   refreshList(): void {
-    this.locations$ = this.locationsService.getLocations();
+    this.locationsService.refreshLocations().subscribe();
   }
 
   startEdit(loc: Location): void {
@@ -73,7 +73,6 @@ export class LocationsComponent implements OnInit, OnDestroy {
     this.locationsService.edit(id, address)
       .pipe(
         takeUntil(this.destroy$),
-        concatMap(() => this.locationsService.getLocations()),
         tap(() => {
           this.success = 'Location updated';
           this.cancelEdit();

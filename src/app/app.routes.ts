@@ -5,6 +5,7 @@ import { CONTACTS_ROUTES } from './features/contacts';
 import { SERVICES_ROUTES } from './features/services';
 import { AUTH_ROUTES } from './features/auth/auth.routes';
 import { CABINET_ROUTES } from './features/cabinet/cabinet.routes';
+import { PURCHASE_ROUTES } from './features/purchase';
 
 export const routes: Routes = [
   {
@@ -38,6 +39,10 @@ export const routes: Routes = [
       {
         path: '',
         children: CABINET_ROUTES
+      },
+      {
+        path: 'purchase',
+        children: PURCHASE_ROUTES
       }
     ]
   },
