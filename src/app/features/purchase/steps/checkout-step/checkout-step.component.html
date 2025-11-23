@@ -1,0 +1,8 @@
+<div class="layout">
+  <div class="left">
+    <app-order-summary [items]="items"></app-order-summary>
+  </div>
+  <div class="right">
+    <app-checkout-form (submitted)="onSubmitted()"></app-checkout-form>
+  </div>
+</div>

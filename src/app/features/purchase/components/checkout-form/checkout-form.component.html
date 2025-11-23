@@ -1,0 +1,52 @@
+<form class="panel" [formGroup]="form" (ngSubmit)="request()">
+  <fieldset class="fs" formGroupName="companyData">
+    <legend class="fs-title">Company information</legend>
+    <div class="grid2">
+      <div>
+        <label class="lbl">Company name</label>
+        <input class="inp" formControlName="companyName" type="text" placeholder="Enter Company Name">
+        <div class="err" *ngIf="submittedFlag && form.get('companyData.companyName')?.invalid">Enter Company Name</div>
+      </div>
+      <div>
+        <label class="lbl">Identification code</label>
+        <input class="inp" formControlName="identificationCode" type="text" placeholder="Identification code">
+      </div>
+    </div>
+    <div class="mt4">
+      <label class="lbl">Address</label>
+      <input class="inp" formControlName="address" type="text" placeholder="Address">
+    </div>
+  </fieldset>
+
+  <fieldset class="fs" formGroupName="contactPersonData">
+    <legend class="fs-title">Contact Person</legend>
+    <div class="grid2">
+      <div>
+        <label class="lbl">First name</label>
+        <input class="inp" formControlName="firstName" type="text" placeholder="First name">
+      </div>
+      <div>
+        <label class="lbl">Last name</label>
+        <input class="inp" formControlName="lastName" type="text" placeholder="Last name">
+      </div>
+      <div>
+        <label class="lbl">Phone number</label>
+        <input class="inp" formControlName="phoneNumber" type="text" placeholder="555 555 555">
+      </div>
+      <div>
+        <label class="lbl">E-mail</label>
+        <input class="inp" formControlName="email" type="email" placeholder="example@email.com">
+        <div class="err" *ngIf="submittedFlag && form.get('contactPersonData.email')?.invalid">Enter a valid email</div>
+      </div>
+    </div>
+  </fieldset>
+
+  <label class="terms">
+    <input type="checkbox" formControlName="acceptTerms">
+    <span>I have read and agree to the <a href="#">terms and conditions</a></span>
+  </label>
+
+  <div class="actions">
+    <button class="btn primary" type="submit">Request order</button>
+  </div>
+</form>

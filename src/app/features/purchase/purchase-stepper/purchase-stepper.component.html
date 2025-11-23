@@ -1,0 +1,33 @@
+<section class="purchase">
+  <div class="container">
+    <h2>Continue purchasing</h2>
+
+    <div class="steps">
+      <div class="step" [class.active]="currentStep()===1">
+        <div class="badge">1</div>
+        <div class="label">Choose coffee machine</div>
+      </div>
+      <div class="divider"></div>
+      <div class="step" [class.active]="currentStep()===2">
+        <div class="badge">2</div>
+        <div class="label">Choose coffee</div>
+      </div>
+      <div class="divider"></div>
+      <div class="step" [class.active]="currentStep()===3">
+        <div class="badge">3</div>
+        <div class="label">Checkout</div>
+      </div>
+    </div>
+
+    <div class="content">
+      <app-choose-machine-step *ngIf="currentStep()===1" (selected)="onMachineSelected($event)" (skip)="skipMachine()"></app-choose-machine-step>
+      <app-choose-coffee-step *ngIf="currentStep()===2"></app-choose-coffee-step>
+      <app-checkout-step *ngIf="currentStep()===3"></app-checkout-step>
+    </div>
+
+    <div class="nav">
+      <button class="btn secondary" [disabled]="currentStep()===1" (click)="goBack()">Back</button>
+      <button class="btn primary" *ngIf="currentStep()<3" [disabled]="currentStep()===1 && !selectedMachine()" (click)="goNext()">Continue</button>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,42 @@
+<section class="invoices">
+  <div class="container">
+    <h2>Invoices</h2>
+
+    <div class="panel">
+      <div class="header">
+        <div class="search">
+          <input type="text" placeholder="Search invoices (number)" />
+        </div>
+        <div class="filters">
+          <select>
+            <option>Status: All</option>
+            <option>Paid</option>
+            <option>Unpaid</option>
+            <option>Overdue</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="list">
+        <div class="row head">
+          <div class="col number">Invoice</div>
+          <div class="col date">Date</div>
+          <div class="col total">Total</div>
+          <div class="col status">Status</div>
+          <div class="col actions">Actions</div>
+        </div>
+
+        <div class="row" *ngFor="let inv of invoices; trackBy: trackById">
+          <div class="col number">{{ inv.number }}</div>
+          <div class="col date">{{ inv.date | date:'mediumDate' }}</div>
+          <div class="col total"><span class="amount">{{ inv.total | number:'1.2-2' }}</span> <span class="cur">{{ inv.currency }}</span></div>
+          <div class="col status"><span [class]="getStatusClass(inv.status)">{{ inv.status }}</span></div>
+          <div class="col actions">
+            <button class="btn link" (click)="onView(inv)">View</button>
+            <button class="btn primary" (click)="onDownload(inv)">Download</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

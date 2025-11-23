@@ -1,0 +1,10 @@
+<div class="card" [class.selected]="selected" (click)="select.emit(machine)">
+  <div class="price">{{ machine.price | number:'1.0-2' }}<span class="unit">₾</span></div>
+  <div class="image">
+    <img [src]="machine.imageUrl" [alt]="machine.name" />
+  </div>
+  <div class="name">{{ machine.name }}</div>
+  <ul class="features">
+    <li *ngFor="let f of machine.features">{{ f }}</li>
+  </ul>
+</div>

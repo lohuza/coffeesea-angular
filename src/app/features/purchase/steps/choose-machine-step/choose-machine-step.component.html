@@ -1,0 +1,11 @@
+<div class="step-header">
+  <button class="btn link" type="button" (click)="skip.emit()">Skip</button>
+</div>
+<div class="grid">
+  <app-coffee-machine-card
+    *ngFor="let m of machines"
+    [machine]="m"
+    [selected]="selectedId() === m.id"
+    (select)="choose($event)"
+  ></app-coffee-machine-card>
+</div>

@@ -1,0 +1,18 @@
+.card{display:flex;flex-direction:column;background:#fff;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.08);overflow:hidden}
+.image{display:flex;align-items:center;justify-content:center;background:#faf7f6;height:160px}
+.image img{max-height:100%;max-width:100%;object-fit:contain}
+.body{padding:14px}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.name{font-weight:700;color:#3a2b25}
+.price{font-weight:700;color:#4b2f26}
+.unit{opacity:.8}
+.meta{display:flex;align-items:center;gap:6px;color:#7a6a62;font-size:12px;margin-bottom:8px}
+.pill{padding:2px 8px;border-radius:999px;background:#efe7e3;color:#4b2f26;font-weight:600}
+.dot{opacity:.5}
+.notes{color:#7a6a62;font-size:13px;min-height:18px}
+.qty{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-top:12px}
+.btn{width:34px;height:34px;border-radius:8px;border:none;cursor:pointer;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.btn.minus{background:#efe7e3;color:#4b2f26}
+.btn.minus:disabled{opacity:.5;cursor:not-allowed}
+.btn.plus{background:#4b2f26;color:#fff}
+.count{min-width:20px;text-align:center;font-weight:700;color:#4b2f26}

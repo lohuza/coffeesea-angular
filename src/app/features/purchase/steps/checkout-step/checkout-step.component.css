@@ -1,0 +1,4 @@
+.layout{display:grid;grid-template-columns:320px 1fr;gap:16px}
+@media (max-width: 1024px){.layout{grid-template-columns:1fr}}
+.left{position:sticky;top:16px;align-self:start}
+.right{}

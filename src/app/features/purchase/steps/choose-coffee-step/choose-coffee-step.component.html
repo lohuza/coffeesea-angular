@@ -1,0 +1,43 @@
+<div class="layout">
+  <aside class="filters">
+    <h3 class="title">Filters</h3>
+
+    <div class="filter-group">
+      <label class="label">Search</label>
+      <input type="text" class="input" placeholder="Search coffee" />
+    </div>
+
+    <div class="filter-group">
+      <div class="label">Roast level</div>
+      <label class="check"><input type="checkbox"/> <span>Light</span></label>
+      <label class="check"><input type="checkbox"/> <span>Medium</span></label>
+      <label class="check"><input type="checkbox"/> <span>Dark</span></label>
+    </div>
+
+    <div class="filter-group">
+      <div class="label">Origin</div>
+      <label class="check"><input type="checkbox"/> <span>Ethiopia</span></label>
+      <label class="check"><input type="checkbox"/> <span>Colombia</span></label>
+      <label class="check"><input type="checkbox"/> <span>Kenya</span></label>
+      <label class="check"><input type="checkbox"/> <span>Indonesia</span></label>
+    </div>
+
+    <div class="filter-group">
+      <div class="label">Bag size</div>
+      <label class="check"><input type="radio" name="size"/> <span>250g</span></label>
+      <label class="check"><input type="radio" name="size"/> <span>500g</span></label>
+      <label class="check"><input type="radio" name="size"/> <span>1kg</span></label>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="btn reset">Reset</button>
+      <button type="button" class="btn apply">Apply</button>
+    </div>
+  </aside>
+
+  <main class="results">
+    <div class="grid">
+      <app-coffee-card *ngFor="let c of coffees" [coffee]="c"></app-coffee-card>
+    </div>
+  </main>
+</div>

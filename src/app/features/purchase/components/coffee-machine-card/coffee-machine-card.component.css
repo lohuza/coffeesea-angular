@@ -1,0 +1,13 @@
+.card{position:relative;background:#fff;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,0.08);padding:20px;cursor:pointer;transition:transform .15s ease, box-shadow .2s ease, background .2s ease,color .2s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,0.12)}
+.card.selected{background:#4b2f26;color:#fff}
+.price{font-weight:700;font-size:20px;margin-bottom:8px;color:#2d201c}
+.card.selected .price{color:#fff;opacity:.95}
+.price .unit{font-size:14px;margin-left:4px;opacity:.85}
+.image{display:flex;justify-content:center;align-items:center;height:180px;margin:8px 0}
+.image img{max-height:100%;max-width:100%;object-fit:contain}
+.name{font-weight:700;margin:6px 0 10px 0}
+.features{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.features li{position:relative;padding-left:22px;font-size:14px;color:#3d2e28}
+.card.selected .features li{color:#e8dcd7}
+.features li:before{content:'✓';position:absolute;left:0;top:0;color:#24a148;font-weight:700}

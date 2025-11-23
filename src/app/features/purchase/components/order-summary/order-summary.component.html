@@ -1,0 +1,24 @@
+<div class="summary">
+  <h3 class="title">Order summary ({{ items.length }} items)</h3>
+
+  <div class="list">
+    <div class="row" *ngFor="let it of items">
+      <div class="thumb"><img [src]="it.imageUrl" [alt]="it.title"></div>
+      <div class="meta">
+        <div class="name">{{ it.title }}</div>
+        <div class="price-line">
+          <span class="price">{{ it.price | number:'1.0-2' }} €</span>
+          <span class="qty">× {{ it.qty }}</span>
+        </div>
+        <div class="note" *ngIf="it.note">{{ it.note }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="totals">
+    <div class="line"><span>Subtotal</span><span>{{ subtotal | number:'1.0-2' }} €</span></div>
+    <div class="line"><span>Delivery</span><span>{{ delivery | number:'1.0-2' }} €</span></div>
+    <div class="line sale"><span>Total sale</span><span>- {{ totalSale | number:'1.0-2' }} €</span></div>
+    <div class="line total"><span>Total</span><span>{{ total | number:'1.0-2' }} €</span></div>
+  </div>
+</div>

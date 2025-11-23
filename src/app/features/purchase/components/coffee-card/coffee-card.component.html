@@ -1,0 +1,25 @@
+<div class="card">
+  <div class="image">
+    <img [src]="coffee.imageUrl" [alt]="coffee.name" />
+  </div>
+  <div class="body">
+    <div class="top">
+      <div class="name">{{ coffee.name }}</div>
+      <div class="price">{{ coffee.price | number:'1.0-2' }} <span class="unit">₾</span></div>
+    </div>
+    <div class="meta">
+      <span class="pill">{{ coffee.roast }}</span>
+      <span class="dot">•</span>
+      <span class="pill">{{ coffee.origin }}</span>
+      <span class="dot">•</span>
+      <span class="pill">{{ coffee.size }}</span>
+    </div>
+    <div class="notes" *ngIf="coffee.notes">{{ coffee.notes }}</div>
+
+    <div class="qty">
+      <button type="button" class="btn minus" (click)="dec()" [disabled]="qty()===0">−</button>
+      <div class="count">{{ qty() }}</div>
+      <button type="button" class="btn plus" (click)="inc()">+</button>
+    </div>
+  </div>
+</div>

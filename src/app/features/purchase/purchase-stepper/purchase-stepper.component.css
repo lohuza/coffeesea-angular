@@ -1,0 +1,16 @@
+.purchase{padding:40px 0}
+.container{max-width:1100px;margin:0 auto;padding:0 16px}
+.h2{margin-bottom:16px}
+.steps{display:flex;align-items:center;gap:16px;margin:16px 0 28px}
+.step{display:flex;flex-direction:column;align-items:center;color:#a08f86}
+.step .badge{width:40px;height:40px;border-radius:999px;background:#c9bbb5;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
+.step.active{color:#4b2f26}
+.step.active .badge{background:#4b2f26}
+.divider{flex:1;height:2px;background:#d9cdc7;border-radius:1px}
+.content{margin:20px 0}
+.placeholder{padding:60px;border:2px dashed #e0d6d1;border-radius:12px;text-align:center;color:#7a6a62}
+.nav{display:flex;justify-content:flex-end;gap:12px;margin-top:20px}
+.btn{border:none;border-radius:999px;padding:12px 22px;font-weight:700;cursor:pointer}
+.btn.primary{background:#4b2f26;color:#fff}
+.btn.primary:disabled{opacity:.6;cursor:not-allowed}
+.btn.secondary{background:#efe7e3;color:#4b2f26}
