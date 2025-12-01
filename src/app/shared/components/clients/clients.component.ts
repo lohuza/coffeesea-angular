@@ -11,29 +11,13 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class ClientsComponent {
   clients = [
-    {
-      name: 'Cafe Mocha',
-      logo: 'assets/images/brands/illy.png'
-    },
-    {
-      name: 'Bean & Brew',
-      logo: 'assets/images/brands/illy.png'
-    },
-    {
-      name: 'Morning Sip',
-      logo: 'assets/images/brands/illy.png'
-    },
-    {
-      name: 'Coffee Republic',
-      logo: 'assets/images/brands/illy.png'
-    },
-    {
-      name: 'Urban Brews',
-      logo: 'assets/images/brands/illy.png'
-    },
-    {
-      name: 'Java Junction',
-      logo: 'assets/images/brands/illy.png'
-    }
+    { name: 'PSP', logo: 'assets/images/brands/illy.png' },
+    { name: 'TBC Bank', logo: 'assets/images/brands/illy.png' },
+    { name: 'Bank of Georgia', logo: 'assets/images/brands/illy.png' },
+    { name: 'Silknet', logo: 'assets/images/brands/illy.png' },
+    { name: 'Geocell', logo: 'assets/images/brands/illy.png' },
+    { name: 'Magti', logo: 'assets/images/brands/illy.png' },
+    { name: 'Liberty Bank', logo: 'assets/images/brands/illy.png' },
+    { name: 'Wissol', logo: 'assets/images/brands/illy.png' }
   ];
 }

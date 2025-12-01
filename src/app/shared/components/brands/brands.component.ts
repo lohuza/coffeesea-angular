@@ -15,13 +15,13 @@ import { register } from 'swiper/element/bundle';
 export class BrandsComponent implements AfterViewInit {
   brands = [
     { id: 1, name: 'Illy', logo: 'assets/images/brands/illy.png' },
-    { id: 2, name: 'Starbucks', logo: 'assets/images/brands/illy.png' },
-    { id: 3, name: 'Nespresso', logo: 'assets/images/brands/illy.png' },
-    { id: 4, name: 'Lavazza', logo: 'assets/images/brands/illy.png' },
+    { id: 2, name: 'Illy', logo: 'assets/images/brands/illy.png' },
+    { id: 3, name: 'Illy', logo: 'assets/images/brands/illy.png' },
+    { id: 4, name: 'Illy', logo: 'assets/images/brands/illy.png' },
     { id: 5, name: 'Illy', logo: 'assets/images/brands/illy.png' },
-    { id: 6, name: 'Starbucks', logo: 'assets/images/brands/illy.png' },
-    { id: 7, name: 'Nespresso', logo: 'assets/images/brands/illy.png' },
-    { id: 8, name: 'Lavazza', logo: 'assets/images/brands/illy.png' }
+    { id: 6, name: 'Illy', logo: 'assets/images/brands/illy.png' },
+    { id: 7, name: 'Illy', logo: 'assets/images/brands/illy.png' },
+    { id: 8, name: 'Illy', logo: 'assets/images/brands/illy.png' }
   ];
 
   ngAfterViewInit() {

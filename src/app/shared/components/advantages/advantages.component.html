@@ -1,14 +1,74 @@
-<section class="advantages-section">
-  <div class="container">
-    <h2>{{ 'home.our_advantages' | translate }}</h2>
-    <div class="advantages-grid">
-      <div class="advantage-card" *ngFor="let advantage of advantages">
-        <div class="advantage-icon">
-          <img [src]="advantage.icon" [alt]="advantage.title | translate">
+<section class="py-20 px-4 lg:px-8 xl:px-16">
+  <div class="max-w-container mx-auto">
+    <!-- Heading -->
+    <div class="text-center mb-16">
+      <h2 class="text-2xl lg:text-h2 font-medium text-coffee-500 mb-2">
+        {{ 'home.our_advantages' | translate }}
+      </h2>
+      <p class="text-p-medium text-coffee-200">
+        {{ 'home.our_advantages_title' | translate }}
+      </p>
+    </div>
+
+    <!-- Advantages Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-8 max-w-4xl mx-auto">
+      <!-- Coffee Machines -->
+      <div class="flex flex-col items-center text-center">
+        <div class="w-32 h-32 rounded-full bg-coffee-50 flex items-center justify-center mb-6">
+          <svg class="w-16 h-16 text-coffee-300" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 48h24v4H16v-4zM12 20h32v4H12v-4z" fill="currentColor" opacity="0.3"/>
+            <rect x="16" y="24" width="24" height="24" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+            <path d="M40 28h6a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4h-6" stroke="currentColor" stroke-width="2" fill="none"/>
+            <circle cx="28" cy="36" r="6" stroke="currentColor" stroke-width="2" fill="none"/>
+            <path d="M20 16v-4a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v4" stroke="currentColor" stroke-width="2" fill="none"/>
+          </svg>
         </div>
-        <h3>{{ advantage.title | translate }}</h3>
-        <p>{{ advantage.description | translate }}</p>
+        <h3 class="text-lg font-semibold text-coffee-500 mb-3">
+          {{ 'home.new_coffee_machines' | translate }}
+        </h3>
+        <p class="text-coffee-200 leading-relaxed">
+          {{ 'home.new_coffee_machines_description' | translate }}
+        </p>
+      </div>
+
+      <!-- Unlimited Coffee -->
+      <div class="flex flex-col items-center text-center">
+        <div class="w-32 h-32 rounded-full bg-coffee-50 flex items-center justify-center mb-6">
+          <svg class="w-16 h-16 text-coffee-300" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="32" cy="44" rx="14" ry="8" stroke="currentColor" stroke-width="2" fill="none"/>
+            <path d="M18 44V28c0-2 6-4 14-4s14 2 14 4v16" stroke="currentColor" stroke-width="2" fill="none"/>
+            <ellipse cx="32" cy="28" rx="14" ry="4" stroke="currentColor" stroke-width="2" fill="none"/>
+            <circle cx="32" cy="18" r="6" stroke="currentColor" stroke-width="2" fill="none"/>
+            <circle cx="32" cy="18" r="2" fill="currentColor"/>
+            <path d="M26 14c-2-4 0-8 6-8M38 14c2-4 0-8-6-8" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-coffee-500 mb-3">
+          {{ 'home.unlimited_coffee' | translate }}
+        </h3>
+        <p class="text-coffee-200 leading-relaxed">
+          {{ 'home.unlimited_coffee_description' | translate }}
+        </p>
+      </div>
+
+      <!-- Constant Sales -->
+      <div class="flex flex-col items-center text-center">
+        <div class="w-32 h-32 rounded-full bg-coffee-50 flex items-center justify-center mb-6">
+          <svg class="w-16 h-16 text-coffee-300" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="12" y="20" width="28" height="20" rx="2" stroke="currentColor" stroke-width="2" fill="none" transform="rotate(-15 26 30)"/>
+            <circle cx="26" cy="30" r="4" stroke="currentColor" stroke-width="2" fill="none" transform="rotate(-15 26 30)"/>
+            <path d="M38 16l14 6-6 14" stroke="currentColor" stroke-width="2" fill="none"/>
+            <rect x="38" y="12" width="16" height="12" rx="2" stroke="currentColor" stroke-width="2" fill="none" transform="rotate(15 46 18)"/>
+            <text x="44" y="20" font-size="8" fill="currentColor" font-weight="bold">%</text>
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-coffee-500 mb-3">
+          {{ 'home.constant_sales' | translate }}
+        </h3>
+        <p class="text-coffee-200 leading-relaxed">
+          {{ 'home.constant_sales_description' | translate }}
+        </p>
       </div>
     </div>
   </div>
-</section> 
+</section>

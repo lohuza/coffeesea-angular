@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       maxWidth: {
-        'container': '1200px'
+        'container': '1400px'
       },
       boxShadow: {
         'pricing': '0px 40px 40px -40px rgba(54, 38, 36, 0.3)',
@@ -44,7 +44,7 @@ module.exports = {
       fontSize: {
         // Display
         'display': ['60px', { lineHeight: '1.2', fontWeight: '800' }],
-        
+
         // Headings
         'h1': ['40px', { lineHeight: '1.2', fontWeight: '700' }],
         'h2': ['32px', { lineHeight: '1.2', fontWeight: '700' }],
@@ -52,13 +52,13 @@ module.exports = {
         'h4': ['20px', { lineHeight: '1.2', fontWeight: '700' }],
         'h5': ['16px', { lineHeight: '1.2', fontWeight: '700' }],
         'h6': ['14px', { lineHeight: '1.2', fontWeight: '700' }],
-        
+
         // Paragraphs - Bold
         'p-large-bold': ['24px', { lineHeight: '1.5', fontWeight: '700' }],
         'p-medium-bold': ['16px', { lineHeight: '1.5', fontWeight: '700' }],
         'p-small-bold': ['14px', { lineHeight: '1.5', fontWeight: '700' }],
         'p-xsmall-bold': ['12px', { lineHeight: '1.5', fontWeight: '700' }],
-        
+
         // Paragraphs - Regular
         'p-20': ['20px', { lineHeight: '1.5', fontWeight: '400' }],
         'p-large': ['24px', { lineHeight: '1.5', fontWeight: '400' }],
@@ -74,4 +74,4 @@ module.exports = {
   plugins: [
     require('@tailwindcss/line-clamp')
   ],
-} 
+}

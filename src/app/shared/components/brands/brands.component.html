@@ -1,28 +1,24 @@
-<section class="brands-section">
-  <div class="container">
-    <div class="brands-heading">
-      <h2>{{ 'home.finest_coffee_brands' | translate }}</h2>
-      <p>{{ 'home.our_exclusive_partners' | translate }}</p>
+<section class="min-h-[25vh] flex flex-col justify-center py-16 px-4 lg:px-8 xl:px-16">
+  <div class="mx-auto w-full max-w-container">
+    <!-- Heading -->
+    <div class="text-center mb-10">
+      <h2 class="text-2xl lg:text-h2 font-medium text-coffee-500 mb-2">
+        {{ 'home.finest_coffee_brands' | translate }}
+      </h2>
+      <p class="text-p-medium text-coffee-200">
+        {{ 'home.our_exclusive_partners' | translate }}
+      </p>
     </div>
 
-    <div class="brands-swiper-container">
-      <swiper-container
-        init="false"
-        slides-per-view="1"
-        space-between="32"
-        loop="true"
-        autoplay="true"
-        autoplay-delay="3000"
-        autoplay-disable-on-interaction="false"
-        breakpoints='{"640": {"slidesPerView": 2.5}, "768": {"slidesPerView": 3.5}, "1024": {"slidesPerView": 4.5}}'>
-
-        <swiper-slide *ngFor="let brand of brands">
-          <div class="brand-card">
-            <img [src]="brand.logo" [alt]="brand.name">
-          </div>
-        </swiper-slide>
-
-      </swiper-container>
+    <!-- Brands Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div *ngFor="let brand of brands.slice(0, 4)"
+           class="bg-white py-12 px-10 rounded-2xl h-44 flex items-center justify-center shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+        <img
+          [src]="brand.logo"
+          [alt]="brand.name"
+          class="max-w-[160px] max-h-[80px] object-contain">
+      </div>
     </div>
   </div>
 </section>

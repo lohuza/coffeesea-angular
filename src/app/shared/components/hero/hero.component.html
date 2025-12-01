@@ -1,15 +1,28 @@
-<section class="hero-section">
-  <div class="hero-container">
+<section class="min-h-[calc(100vh-5rem)] flex items-center px-4 lg:px-8 xl:px-16">
+  <div class="max-w-container mx-auto w-full flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-20">
     <!-- Left side - Text content -->
-    <div class="hero-content">
-      <h1>{{ 'home.hero_title' | translate }}</h1>
-      <p>{{ 'home.hero_description' | translate }}</p>
-      <button class="cta-button" (click)="scrollToPurchase()">{{ 'home.get_started' | translate }}</button>
+    <div class="flex-1 max-w-xl">
+      <h1 class="text-4xl md:text-5xl lg:text-display font-normal leading-tight text-coffee-500 tracking-tight mb-6">
+        {{ 'home.hero_title' | translate }}
+      </h1>
+      <p class="text-p-medium text-coffee-300 mb-8 max-w-lg">
+        {{ 'home.hero_description' | translate }}
+      </p>
+      <button
+        (click)="scrollToPurchase()"
+        class="bg-coffee-300 hover:bg-coffee-500 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+        {{ 'home.get_started' | translate }}
+      </button>
     </div>
 
     <!-- Right side - Coffee image -->
-    <div class="hero-image">
-      <img src="assets/images/coffee-splash.png" alt="Coffee splash" class="coffee-image">
+    <div class="flex-1 flex justify-center items-center relative">
+      <!-- Background shape -->
+      <div class="absolute w-[90%] h-[90%] bg-coffee-100/50 rounded-3xl -rotate-6"></div>
+      <img
+        src="assets/images/coffee-splash.png"
+        alt="Coffee splash"
+        class="relative z-10 max-h-[500px] w-auto object-contain rotate-[15deg] drop-shadow-2xl">
     </div>
   </div>
 </section>

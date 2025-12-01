@@ -1,32 +1,37 @@
-<section class="testimonials-section">
-  <div class="container">
-    <div class="testimonials-heading">
-      <h2>{{ 'home.testimonials' | translate }}</h2>
-      <p>{{ 'home.what_people_say' | translate }}</p>
+<section class="py-20 px-4 lg:px-8 xl:px-16">
+  <div class="max-w-container mx-auto">
+    <!-- Heading -->
+    <div class="text-center mb-12">
+      <h2 class="text-2xl lg:text-h2 font-medium text-coffee-500 mb-2">
+        {{ 'home.testimonials' | translate }}
+      </h2>
+      <p class="text-p-medium text-coffee-200">
+        {{ 'home.what_people_say' | translate }}
+      </p>
     </div>
 
-    <div class="testimonials-swiper-container">
-      <swiper-container
-        init="false"
-        slides-per-view="1"
-        space-between="32"
-        loop="true"
-        autoplay="true"
-        autoplay-delay="3000"
-        autoplay-disable-on-interaction="false"
-        breakpoints='{"640": {"slidesPerView": 1}, "768": {"slidesPerView": 1.5}, "1024": {"slidesPerView": 3}}'>
+    <!-- Testimonials Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+      <div *ngFor="let testimonial of testimonials.slice(0, 3)"
+           class="bg-white p-10 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col">
+        <!-- Avatar & Name -->
+        <div class="flex flex-col items-center mb-6">
+          <img
+            [src]="testimonial.image"
+            [alt]="testimonial.name"
+            class="w-20 h-20 rounded-full object-cover mb-4">
+          <h3 class="text-coffee-500 font-semibold text-lg">{{ testimonial.name }}</h3>
+        </div>
+        <!-- Text - flex-grow to push content and equalize heights -->
+        <p class="text-coffee-200 text-center leading-relaxed flex-grow">{{ testimonial.text }}</p>
+      </div>
+    </div>
 
-        <swiper-slide *ngFor="let testimonial of testimonials">
-          <div class="testimonial-card">
-            <div class="testimonial-header">
-              <img [src]="testimonial.image" [alt]="testimonial.name">
-              <h3>{{ testimonial.name }}</h3>
-            </div>
-            <p class="testimonial-text">{{ testimonial.text }}</p>
-          </div>
-        </swiper-slide>
-
-      </swiper-container>
+    <!-- View More Button -->
+    <div class="flex justify-center mt-12">
+      <button class="px-8 py-3 rounded-full border border-coffee-300 text-coffee-500 font-medium hover:bg-coffee-50 transition-all duration-300">
+        {{ 'home.view_more' | translate }}
+      </button>
     </div>
   </div>
 </section>

@@ -1,50 +1,8 @@
-.clients-section {
-  padding: 70px 20px;
-  background-color: #f9f9f9;
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
-
-h2 {
-  text-align: center;
-  margin-bottom: 10px;
-  font-size: 2rem;
-  color: #333;
-}
-
-.section-subtitle {
-  text-align: center;
-  color: #666;
-  margin-bottom: 50px;
-  font-size: 1.1rem;
-}
-
-.clients-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 30px;
-  align-items: center;
-}
-
-.client-item {
-  text-align: center;
-  padding: 20px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
-  transition: transform 0.3s ease;
-}
-
-.client-item:hover {
-  transform: scale(1.05);
-}
-
-.client-item img {
-  max-width: 100%;
-  height: auto;
-  max-height: 60px;
-  object-fit: contain;
-} 
