@@ -1,15 +1,23 @@
 import {Component, EventEmitter, Input, OnInit, Output, signal} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+export interface CoffeeBrand {
+  id: string;
+  name: string;
+  imageUrl: string;
+}
+
 export interface CoffeeItem {
   id: string;
   name: string;
+  description: string;
   price: number;
-  imageUrl: string;
+  salePrice: number;
+  weight: number;
+  blend: string;
   roast: 'Light' | 'Medium' | 'Dark';
-  origin: string;
-  size: string; // e.g., 250g, 500g
-  notes?: string;
+  imageUrl: string;
+  coffeeBrand: CoffeeBrand;
 }
 
 @Component({

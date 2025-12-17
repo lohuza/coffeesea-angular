@@ -6,7 +6,7 @@ export interface CoffeeMachine {
   name: string;
   price: number;
   imageUrl: string;
-  features: string[];
+  benefits: string[];
 }
 
 @Component({

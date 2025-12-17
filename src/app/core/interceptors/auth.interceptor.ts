@@ -9,21 +9,22 @@ import {
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, filter, take, switchMap } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
+import { AuthResponse } from '../models/api.models';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   private isRefreshing = false;
-  private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  private refreshTokenSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
   private authService = inject(AuthService);
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // Skip adding the token for authentication endpoints
-    if (this.isAuthRequest(request)) {
+    // Skip adding the token for SignIn/LogIn; include for RefreshToken (server expects bearer)
+    if (this.isAuthRequestWithoutBearer(request)) {
       return next.handle(request);
     }
 
     const token = this.authService.getToken();
-    
+
     if (token) {
       request = this.addToken(request, token);
     }
@@ -31,6 +32,14 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError(error => {
         if (error instanceof HttpErrorResponse && error.status === 401) {
+          // Do not attempt refresh for auth endpoints; just propagate/log out accordingly
+          if (this.isAuthEndpoint(request)) {
+            if (request.url.includes('/api/Authentication/RefreshToken')) {
+              // If refresh failed with 401, clear session
+              this.authService.logout();
+            }
+            return throwError(() => error);
+          }
           return this.handle401Error(request, next);
         }
         return throwError(() => error);
@@ -46,7 +55,14 @@ export class AuthInterceptor implements HttpInterceptor {
     });
   }
 
-  private isAuthRequest(request: HttpRequest<any>): boolean {
+  private isAuthRequestWithoutBearer(request: HttpRequest<any>): boolean {
+    return (
+      request.url.includes('/api/Authentication/SignIn') ||
+      request.url.includes('/api/Authentication/LogIn')
+    );
+  }
+
+  private isAuthEndpoint(request: HttpRequest<any>): boolean {
     return (
       request.url.includes('/api/Authentication/SignIn') ||
       request.url.includes('/api/Authentication/LogIn') ||
@@ -60,10 +76,10 @@ export class AuthInterceptor implements HttpInterceptor {
       this.refreshTokenSubject.next(null);
 
       return this.authService.refreshToken().pipe(
-        switchMap((token: any) => {
+        switchMap((resp: AuthResponse) => {
           this.isRefreshing = false;
-          this.refreshTokenSubject.next(token);
-          return next.handle(this.addToken(request, token.token));
+          this.refreshTokenSubject.next(resp.token);
+          return next.handle(this.addToken(request, resp.token));
         }),
         catchError((error) => {
           this.isRefreshing = false;
@@ -76,9 +92,9 @@ export class AuthInterceptor implements HttpInterceptor {
         filter(token => token != null),
         take(1),
         switchMap(token => {
-          return next.handle(this.addToken(request, token.token));
+          return next.handle(this.addToken(request, token as string));
         })
       );
     }
   }
-} 
+}

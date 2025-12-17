@@ -7,7 +7,7 @@ import {
   LoginRequest,
   SignInRequest,
   RefreshTokenRequest,
-  AuthResponse, Result
+  AuthResponse
 } from '../models/api.models';
 import { BaseService } from './base.service';
 
@@ -32,35 +32,35 @@ export class AuthService extends BaseService {
     this.isAuthenticatedSubject.next(this.hasValidToken());
   }
 
-  signIn(request: SignInRequest): Observable<Result<AuthResponse>> {
-    return this.http.post<Result<AuthResponse>>(`${this.API_URL}/api/Authentication/SignIn`, request)
+  signIn(request: SignInRequest): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.API_URL}/api/Authentication/SignIn`, request)
       .pipe(
         switchMap(response => {
-          if (!response || response.isFailure || !response.value) {
+          if (!response) {
             return this.handleError(new Error('Sign in failed'));
           }
-          this.setSession(response.value);
+          this.setSession(response);
           return of(response);
         }),
         catchError(error => this.handleError(error))
       );
   }
 
-  login(request: LoginRequest): Observable<Result<AuthResponse>> {
-    return this.http.post<Result<AuthResponse>>(`${this.API_URL}/api/Authentication/LogIn`, request)
+  login(request: LoginRequest): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.API_URL}/api/Authentication/LogIn`, request)
       .pipe(
         switchMap(response => {
-          if (!response || response.isFailure || !response.value) {
+          if (!response) {
             return this.handleError(new Error('Log in failed'));
           }
-          this.setSession(response.value);
+          this.setSession(response);
           return of(response);
         }),
         catchError(error => this.handleError(error))
       );
   }
 
-  refreshToken(): Observable<Result<AuthResponse>> {
+  refreshToken(): Observable<AuthResponse> {
     const token = this.getFromStorage(this.TOKEN_KEY);
     const refreshToken = this.getFromStorage(this.REFRESH_TOKEN_KEY);
 
@@ -73,13 +73,13 @@ export class AuthService extends BaseService {
       refreshToken
     };
 
-    return this.http.post<Result<AuthResponse>>(`${this.API_URL}/api/Authentication/RefreshToken`, request)
+    return this.http.post<AuthResponse>(`${this.API_URL}/api/Authentication/RefreshToken`, request)
       .pipe(
         switchMap(response => {
-          if (!response || response.isFailure || !response.value) {
+          if (!response) {
             return this.handleError(new Error('Could not refresh token'));
           }
-          this.setSession(response.value);
+          this.setSession(response);
           return of(response);
         }),
         catchError(error => this.handleError(error))

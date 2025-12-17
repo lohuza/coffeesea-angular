@@ -5,16 +5,36 @@
   <div class="body">
     <div class="top">
       <div class="name">{{ coffee.name }}</div>
-      <div class="price">{{ coffee.price | number:'1.0-2' }} <span class="unit">₾</span></div>
+      <div class="price">
+        <ng-container *ngIf="coffee.salePrice && coffee.salePrice < coffee.price; else regularPrice">
+          <span class="sale">{{ coffee.salePrice | number:'1.0-2' }} <span class="unit">₾</span></span>
+          <span class="original line-through opacity-70 ml-2">{{ coffee.price | number:'1.0-2' }} <span class="unit">₾</span></span>
+        </ng-container>
+        <ng-template #regularPrice>
+          <span>{{ coffee.price | number:'1.0-2' }} <span class="unit">₾</span></span>
+        </ng-template>
+      </div>
     </div>
     <div class="meta">
       <span class="pill">{{ coffee.roast }}</span>
       <span class="dot">•</span>
-      <span class="pill">{{ coffee.origin }}</span>
+      <span class="pill">{{ coffee.blend }}</span>
       <span class="dot">•</span>
-      <span class="pill">{{ coffee.size }}</span>
+      <span class="pill">{{ coffee.weight }}g</span>
+      <span class="dot" *ngIf="coffee.coffeeBrand?.name">•</span>
+      <span class="pill" *ngIf="coffee.coffeeBrand?.name">{{ coffee.coffeeBrand.name }}</span>
     </div>
-    <div class="notes" *ngIf="coffee.notes">{{ coffee.notes }}</div>
+    <div class="details mt-3" *ngIf="coffee.description">
+      <div class="title text-xs uppercase tracking-wider text-slate-500 mb-2">Details</div>
+      <ul class="grid grid-cols-1 gap-y-1 sm:grid-cols-2 sm:gap-x-4">
+        <ng-container *ngFor="let raw of coffee.description.split('|')">
+          <li *ngIf="raw.trim().length" class="flex items-start gap-2 text-sm text-slate-700">
+            <span class="mt-0.5 text-emerald-600">✓</span>
+            <span>{{ raw.trim() }}</span>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
 
     <div class="qty">
       <button type="button" class="btn minus" (click)="dec()" [disabled]="qty()===0">−</button>

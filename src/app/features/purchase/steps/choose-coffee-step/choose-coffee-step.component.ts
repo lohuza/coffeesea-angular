@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoffeeCardComponent, CoffeeItem } from '../../components/coffee-card/coffee-card.component';
+import { DataCacheService } from '../../../../core/services/data-cache.service';
+import { CartService } from '../../../../core/services/cart.service';
 
 @Component({
   selector: 'app-choose-coffee-step',
@@ -9,50 +11,23 @@ import { CoffeeCardComponent, CoffeeItem } from '../../components/coffee-card/co
   templateUrl: './choose-coffee-step.component.html',
   styleUrl: './choose-coffee-step.component.css'
 })
-export class ChooseCoffeeStepComponent {
-  // Mock coffees for UI
-  coffees: CoffeeItem[] = [
-    {
-      id: 'ethiopia-250',
-      name: 'Ethiopia Yirgacheffe',
-      price: 24.9,
-      imageUrl: 'assets/images/coffee-brand.png',
-      roast: 'Light',
-      origin: 'Ethiopia',
-      size: '250g',
-      notes: 'Floral, citrus, tea-like body'
-    },
-    {
-      id: 'colombia-500',
-      name: 'Colombia Supremo',
-      price: 29.5,
-      imageUrl: 'assets/images/coffee-brand.png',
-      roast: 'Medium',
-      origin: 'Colombia',
-      size: '500g',
-      notes: 'Chocolate, caramel, balanced acidity'
-    },
-    {
-      id: 'kenya-250',
-      name: 'Kenya AA',
-      price: 26.0,
-      imageUrl: 'assets/images/coffee-brand.png',
-      roast: 'Medium',
-      origin: 'Kenya',
-      size: '250g',
-      notes: 'Berry sweetness, winey acidity'
-    },
-    {
-      id: 'sumatra-250',
-      name: 'Sumatra Mandheling',
-      price: 25.0,
-      imageUrl: 'assets/images/coffee-brand.png',
-      roast: 'Dark',
-      origin: 'Indonesia',
-      size: '250g',
-      notes: 'Earthy, spicy, low acidity'
-    }
-  ];
+export class ChooseCoffeeStepComponent implements OnInit {
+  coffees: CoffeeItem[] = [];
 
-  // Placeholder handlers for filter Apply/Reset can be added later; UI only now.
+  constructor(private cache: DataCacheService, public cart: CartService) {}
+
+  ngOnInit(): void {
+    this.cache.getCoffees().subscribe({
+      next: data => this.coffees = data ?? [],
+      error: _ => this.coffees = []
+    });
+  }
+
+  getQty(id: string): number {
+    return this.cart.getCoffeeQty(id);
+  }
+
+  onQtyChange(item: CoffeeItem, quantity: number) {
+    this.cart.setCoffeeQuantity(item, quantity);
+  }
 }

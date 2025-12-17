@@ -1,29 +1,36 @@
 <div class="layout">
   <aside class="filters">
-    <h3 class="title">Filters</h3>
-
     <div class="filter-group">
       <label class="label">Search</label>
       <input type="text" class="input" placeholder="Search coffee" />
     </div>
 
     <div class="filter-group">
-      <div class="label">Roast level</div>
+      <div class="label">Brand</div>
+      <label class="check"><input type="checkbox"/> <span>Lavazza</span></label>
+      <label class="check"><input type="checkbox"/> <span>Nescafe</span></label>
+      <label class="check"><input type="checkbox"/> <span>Starbucks</span></label>
+      <label class="check"><input type="checkbox"/> <span>Bustelho</span></label>
+      <label class="check"><input type="checkbox"/> <span>Folghers</span></label>
+      <label class="check"><input type="checkbox"/> <span>Delonghi</span></label>
+    </div>
+
+    <div class="filter-group">
+      <div class="label">Blend</div>
+      <label class="check"><input type="checkbox"/> <span>Arabica</span></label>
+      <label class="check"><input type="checkbox"/> <span>Robusta</span></label>
+      <label class="check"><input type="checkbox"/> <span>Arabica / Robusta</span></label>
+    </div>
+
+    <div class="filter-group">
+      <div class="label">Roast</div>
       <label class="check"><input type="checkbox"/> <span>Light</span></label>
       <label class="check"><input type="checkbox"/> <span>Medium</span></label>
       <label class="check"><input type="checkbox"/> <span>Dark</span></label>
     </div>
 
     <div class="filter-group">
-      <div class="label">Origin</div>
-      <label class="check"><input type="checkbox"/> <span>Ethiopia</span></label>
-      <label class="check"><input type="checkbox"/> <span>Colombia</span></label>
-      <label class="check"><input type="checkbox"/> <span>Kenya</span></label>
-      <label class="check"><input type="checkbox"/> <span>Indonesia</span></label>
-    </div>
-
-    <div class="filter-group">
-      <div class="label">Bag size</div>
+      <div class="label">Size</div>
       <label class="check"><input type="radio" name="size"/> <span>250g</span></label>
       <label class="check"><input type="radio" name="size"/> <span>500g</span></label>
       <label class="check"><input type="radio" name="size"/> <span>1kg</span></label>
@@ -37,7 +44,12 @@
 
   <main class="results">
     <div class="grid">
-      <app-coffee-card *ngFor="let c of coffees" [coffee]="c"></app-coffee-card>
+      <app-coffee-card
+        *ngFor="let c of coffees"
+        [coffee]="c"
+        [initialQty]="getQty(c.id)"
+        (quantityChange)="onQtyChange(c, $event.quantity)"
+      ></app-coffee-card>
     </div>
   </main>
 </div>

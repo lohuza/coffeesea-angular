@@ -3,11 +3,12 @@ import { RouterOutlet } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { TranslateService } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
+import { FloatingCartComponent } from './shared/floating-cart/floating-cart.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, SharedModule],
+  imports: [RouterOutlet, SharedModule, FloatingCartComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

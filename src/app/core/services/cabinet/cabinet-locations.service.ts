@@ -13,9 +13,18 @@ export class CabinetLocationsService extends BaseService {
   public locations$ = this.locationsSubject.asObservable();
 
   private fetchLocations(): Observable<Location[]> {
-    return this.http.get<any>(`${this.API_URL}/api/Cabinet/Locations`)
+    return this.http.get<any>(`${this.API_URL}/api/Locations`)
       .pipe(
-        map(res => res.$values as Location[]),
+        map(res => {
+          // Support both shapes: plain array or { $values: [...] }
+          if (Array.isArray(res)) {
+            return res as Location[];
+          }
+          if (res && Array.isArray(res.$values)) {
+            return res.$values as Location[];
+          }
+          return [] as Location[];
+        }),
         catchError(error => this.handleError(error))
       );
   }
@@ -47,17 +56,17 @@ export class CabinetLocationsService extends BaseService {
   }
 
   add(address: string): Observable<Result<unknown>> {
-    return this.http.post<Result<unknown>>(`${this.API_URL}/api/Cabinet/Locations/Add`, { address: address } as AddLocationRequest)
+    return this.http.post<Result<unknown>>(`${this.API_URL}/api/Locations`, { address: address } as AddLocationRequest)
       .pipe(catchError(error => this.handleError(error)));
   }
 
   edit(id: string, address: string): Observable<Result<unknown>> {
-    return this.http.put<Result<unknown>>(`${this.API_URL}/api/Cabinet/Locations/Edit`, { id: id, address: address } as EditLocationRequest)
+    return this.http.put<Result<unknown>>(`${this.API_URL}/api/Locations`, { id: id, address: address } as EditLocationRequest)
       .pipe(catchError(error => this.handleError(error)));
   }
 
   delete(id: string): Observable<Result<unknown>> {
-    return this.http.delete<Result<unknown>>(`${this.API_URL}/api/Cabinet/Locations/Delete/${id}`)
+    return this.http.delete<Result<unknown>>(`${this.API_URL}/api/Locations/${id}`)
       .pipe(catchError(error => this.handleError(error)));
   }
 }
