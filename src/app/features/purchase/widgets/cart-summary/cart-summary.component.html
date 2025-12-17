@@ -1,0 +1,44 @@
+<div class="cart box" *ngIf="hasItems(); else empty">
+  <div class="header flex items-center justify-between mb-2">
+    <div class="title font-semibold">Cart</div>
+    <button type="button" class="btn link text-sm" (click)="clear()">Clear</button>
+  </div>
+
+  <div class="machine mb-3" *ngIf="cart.state().machine as m">
+    <div class="flex items-center gap-3">
+      <img [src]="m.imageUrl" [alt]="m.name" class="w-12 h-12 object-contain" />
+      <div class="flex-1">
+        <div class="name">{{ m.name }}</div>
+      </div>
+      <button type="button" class="btn link text-xs mr-2" title="Remove" (click)="removeMachine()">Remove</button>
+      <div class="price">{{ m.price | number:'1.0-2' }} <span class="unit">₾</span></div>
+    </div>
+  </div>
+
+  <ul class="coffees divide-y">
+    <li *ngFor="let l of lines()" class="py-2 flex items-center gap-3">
+      <img [src]="l.imageUrl" [alt]="l.name" class="w-10 h-10 object-contain" />
+      <div class="flex-1">
+        <div class="name">{{ l.name }}</div>
+        <div class="meta text-xs text-slate-500">
+          Qty: {{ l.qty }} · Unit: {{ (l.salePrice && l.salePrice < l.price ? l.salePrice : l.price) | number:'1.0-2' }}
+          <span class="unit">₾</span>
+        </div>
+      </div>
+      <button type="button" class="btn link text-xs mr-2" title="Remove" (click)="removeCoffee(l.id)">Remove</button>
+      <div class="price">{{ ((l.salePrice && l.salePrice < l.price ? l.salePrice : l.price) * l.qty) | number:'1.0-2' }} <span class="unit">₾</span></div>
+    </li>
+  </ul>
+
+  <div class="total mt-3 flex items-center justify-between">
+    <div class="label font-medium">Total</div>
+    <div class="amount font-semibold">{{ cart.subtotal() | number:'1.0-2' }} <span class="unit">₾</span></div>
+  </div>
+</div>
+
+<ng-template #empty>
+  <div class="cart box">
+    <div class="title font-semibold mb-1">Cart</div>
+    <div class="text-sm text-slate-500">Your cart is empty.</div>
+  </div>
+</ng-template>

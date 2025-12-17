@@ -1,0 +1,59 @@
+/* Floating cart pill styles to match the provided design */
+.cart-pill {
+  position: fixed;
+  right: 24px;
+  top: 96px;
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 28px;
+  background: #4a2c23; /* deep coffee brown */
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  cursor: pointer;
+}
+.cart-pill.hidden { display: none; }
+.cart-pill .icon { width: 22px; height: 22px; display: inline-flex; }
+.cart-pill .icon svg { width: 22px; height: 22px; }
+.cart-pill .amount { font-weight: 600; letter-spacing: 0.2px; }
+.cart-pill .currency { opacity: 0.9; }
+
+/* Modal / sheet */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 1000;
+}
+.sheet {
+  position: fixed;
+  right: 24px;
+  top: 140px;
+  width: min(520px, calc(100vw - 48px));
+  max-height: calc(100vh - 180px);
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+.sheet-header .title { font-weight: 600; font-size: 16px; }
+.sheet-header .close { border: none; background: transparent; font-size: 22px; line-height: 1; cursor: pointer; }
+.sheet-body { padding: 12px 16px; overflow: auto; }
+
+@media (max-width: 640px) {
+  .cart-pill { right: 16px; top: 80px; padding: 10px 14px; }
+  .sheet { right: 16px; left: 16px; width: auto; }
+}
